@@ -7,10 +7,12 @@ import React from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
+    <>
       <Navbar />
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
       <Footer />
-    </Layout>
+    </>
   );
 }

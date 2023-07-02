@@ -1,11 +1,19 @@
+import { Righteous } from 'next/font/google';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
+const font = Righteous({ subsets: ['latin'], weight: ['400'] });
+
 export default function Navbar() {
+  const router = useRouter();
   return (
-    <nav>
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link href="/" className="flex items-center">
+    <nav className={font.className}>
+      <div className="flex flex-wrap items-center justify-between mx-auto md:p-10 p-4">
+        <div className="hidden md:flex absolute left-0 z-0 w-40">
+          <img src="/assets/logo.png" />
+        </div>
+        <Link href="/" className="flex items-center z-10">
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             WORLD TIMES
           </span>
@@ -15,7 +23,9 @@ export default function Navbar() {
           <li>
             <Link
               href="/books"
-              className="block py-2 pl-3 pr-4 text-white rounded bg-transparent p-0"
+              className={`block py-2 pl-3 pr-4 text-white rounded bg-transparent p-0 ${
+                router.pathname === '/books' && 'border-b'
+              }`}
               aria-current="page"
             >
               Best Seller Books
@@ -24,7 +34,9 @@ export default function Navbar() {
           <li>
             <Link
               href="/movies"
-              className= "block py-2 pl-3 pr-4 text-white rounded bg-transparent p-0"
+              className={`block py-2 pl-3 pr-4 text-white rounded bg-transparent p-0 ${
+                router.pathname === '/movies' && 'border-b'
+              }`}
             >
               Movie Reviews
             </Link>
