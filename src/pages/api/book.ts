@@ -1,8 +1,8 @@
 import { APP_CONFIG } from '@/config';
 
-export async function getMovies() {
+export async function getBooks() {
   const response = await fetch(
-    APP_CONFIG.MOVIE_REVIEWS + APP_CONFIG.API_KEY
+    APP_CONFIG.BEST_SELLERS_BOOKS + APP_CONFIG.API_KEY
   );
   const data = await response.json();
   return data.results;

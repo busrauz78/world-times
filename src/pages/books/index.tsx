@@ -1,5 +1,5 @@
 import BookCard from '@/components/Card/BookCard';
-import { APP_CONFIG } from '@/config';
+import { getBooks } from '../api/book';
 
 type BooksProps = {
   results: {
@@ -37,6 +37,7 @@ export default function Books({ results }: BooksProps) {
               book_image,
               weeks_on_list,
             }) => (
+              title &&
               <BookCard
                 key={title}
                 title={title}
@@ -53,14 +54,10 @@ export default function Books({ results }: BooksProps) {
       ))}
     </div>
   );
-}
+};
 
 export async function getStaticProps() {
-  const response = await fetch(
-    APP_CONFIG.BEST_SELLERS_BOOKS + APP_CONFIG.API_KEY
-  );
-  const data = await response.json();
   return {
-    props: { results: data.results },
+    props: { results: await getBooks() },
   };
-}
+};

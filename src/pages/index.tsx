@@ -1,6 +1,6 @@
-import { APP_CONFIG } from '@/config';
 import React from 'react';
 import TopStoryCard from '@/components/Card/TopStoryCard';
+import { getTopStories } from './api/topStories';
 
 type HomeProps = {
   results: {
@@ -15,6 +15,7 @@ export default function Home({ results }: HomeProps) {
   return (
     <div className="flex flex-wrap gap-5 justify-center">
       {results.map(({ title, abstract, byline, url }) => (
+        title &&
         <TopStoryCard
           key={url}
           title={title}
@@ -25,12 +26,10 @@ export default function Home({ results }: HomeProps) {
       ))}
     </div>
   );
-}
+};
 
 export async function getStaticProps() {
-  const response = await fetch(APP_CONFIG.TOP_STORIES + APP_CONFIG.API_KEY);
-  const data = await response.json();
   return {
-    props: { results: data.results },
+    props: { results: await getTopStories() },
   };
 }
