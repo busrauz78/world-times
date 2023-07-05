@@ -7,3 +7,11 @@ export async function getBooks() {
   const data = await response.json();
   return data.results;
 }
+
+export async function searchBooks(search: string) {
+  const response = await fetch(
+    `${APP_CONFIG.BEST_SELLERS_BOOKS_SEARCH}?title=${search}&api-key=GsFc4D6vBpbb3JnswNEj4GknPADdV6hK`
+  );
+  const data = await response.json();
+  return data.results;
+}

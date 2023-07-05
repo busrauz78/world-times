@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className="fixed bottom-0 left-0 z-20 w-full p-4 border-t flex items-center justify-center p-6 bg-black">
       <span className="text-sm">
@@ -13,4 +13,6 @@ export default function Footer() {
       </span>
     </footer>
   );
-}
+};
+
+export default Footer;

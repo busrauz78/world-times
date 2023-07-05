@@ -19,8 +19,8 @@ type MoviesProps = {
 export default function Movies({results}: MoviesProps) {
   return (
     <div className="flex flex-wrap gap-5 justify-center">
-      {results.map(({display_title, summary_short, byline ,publication_date, link, multimedia}) => (
-        display_title && <MovieCard title={display_title} description={summary_short} author={byline} publishedDate={publication_date} url={link.url} imageUrl={multimedia.src} />
+      {results.map(({display_title, summary_short, byline ,publication_date, link, multimedia}, index: number) => (
+        display_title && <MovieCard key={index} title={display_title} description={summary_short} author={byline} publishedDate={publication_date} url={link.url} imageUrl={multimedia.src} />
       ))}
     </div>
   )

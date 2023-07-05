@@ -14,10 +14,10 @@ type HomeProps = {
 export default function Home({ results }: HomeProps) {
   return (
     <div className="flex flex-wrap gap-5 justify-center">
-      {results.map(({ title, abstract, byline, url }) => (
+      {results.map(({ title, abstract, byline, url }, index: number) => (
         title &&
         <TopStoryCard
-          key={url}
+          key={index}
           title={title}
           description={abstract}
           url={url}

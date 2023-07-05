@@ -6,6 +6,8 @@ type LayoutProps = {
 };
 const font = Roboto_Condensed({ subsets: ['latin'], weight: ['400'] });
 
-export default function Layout({ children }: LayoutProps) {
+const Layout = ({ children }: LayoutProps) => {
   return <main className={`p-20 ${font.className}`}>{children}</main>;
-}
+};
+
+export default Layout;

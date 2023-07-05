@@ -5,13 +5,13 @@ type BookCardProps = {
   title: string;
   description: string;
   author: string;
-  imageUrl: string;
+  imageUrl?: string;
   rank?: number;
   buyLink?: string;
   weeksOnList?: number;
 };
 
-export default function BookCard({
+const BookCard = ({
   title,
   description,
   author,
@@ -19,19 +19,19 @@ export default function BookCard({
   rank,
   buyLink,
   weeksOnList,
-}: BookCardProps) {
+}: BookCardProps) => {
   return (
     <div className="relative flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-      <div className="absolute right-0 md:top-0 p-4 border-l border-gray-500 rounded-bl-full bg-gray-500 md:bg-inherit">
+      {rank && <div className="absolute right-0 md:top-0 p-4 border-l border-gray-500 rounded-bl-full bg-gray-500 md:bg-inherit">
         <p className="mb-2 text-xl md:text-gray-200 md:dark:text-gray-400 md:opacity-50 text-white">
           {rank}
         </p>
-      </div>
-      <img
+      </div>}
+      {imageUrl && <img
         className="object-fit w-full md:h-full md:w-48"
         src={imageUrl}
         alt="WorldTimes"
-      />
+      />}
       <div className="flex flex-col justify-between p-4 leading-normal">
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
@@ -59,4 +59,6 @@ export default function BookCard({
       </div>
     </div>
   );
-}
+};
+
+export default BookCard;
