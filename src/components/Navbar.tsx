@@ -22,6 +22,17 @@ const Navbar = () => {
         <ul className="flex flex-row justify-between items-center">
           <li>
             <Link
+              href="/"
+              className={`block py-2 pl-3 pr-4 text-white rounded bg-transparent p-0 ${
+                (router.pathname === '/' || router.pathname === '') && 'border-b'
+              }`}
+              aria-current="page"
+            >
+              Top Stories
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/books"
               className={`block py-2 pl-3 pr-4 text-white rounded bg-transparent p-0 ${
                 router.pathname === '/books' && 'border-b'
