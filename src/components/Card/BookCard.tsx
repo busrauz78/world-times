@@ -28,7 +28,7 @@ const BookCard = ({
         </p>
       </div>}
       {imageUrl && <img
-        className="object-fit w-full md:h-full md:w-48"
+        className="object-fit w-full md:h-full md:w-48 md:max-h-52"
         src={imageUrl}
         alt="WorldTimes"
       />}

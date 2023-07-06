@@ -30,12 +30,12 @@ export default function Books({ results }: BooksProps) {
   const handleOnSubmit = (event: any) => {
     event.preventDefault();
     if (search.length) {
-      router.push(`/books/${search}`)
+      router.push(`/books/${search}`);
     }
   };
   return (
-    <div>
-      <form onSubmit={handleOnSubmit}>
+    <div className="flex flex-col">
+      <form onSubmit={handleOnSubmit} className="max-w-xs">
         <input
           onChange={handleOnChange}
           type="text"
@@ -45,21 +45,24 @@ export default function Books({ results }: BooksProps) {
           placeholder="Search"
         />
       </form>
-      <ol className="relative border-l border-gray-200 dark:border-gray-700">
+      <div className="flex flex-wrap">
         {results.lists.map(({ display_name, books }, index: number) => (
-          <li key={index} className="mb-10 ml-4 flex flex-wrap gap-5">
+          <div className="flex flex-wrap gap-5" key={index}>
             <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-2.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
             <h5 className="font-semibold text-2xl w-full">{display_name}</h5>
             {books.map(
-              ({
-                title,
-                description,
-                author,
-                amazon_product_url,
-                rank,
-                book_image,
-                weeks_on_list,
-              }, index: number) =>
+              (
+                {
+                  title,
+                  description,
+                  author,
+                  amazon_product_url,
+                  rank,
+                  book_image,
+                  weeks_on_list,
+                },
+                index: number
+              ) =>
                 title && (
                   <BookCard
                     key={index + results.lists.length}
@@ -73,9 +76,10 @@ export default function Books({ results }: BooksProps) {
                   />
                 )
             )}
-          </li>
+          </div>
         ))}
-      </ol>
+        s
+      </div>
     </div>
   );
 }
