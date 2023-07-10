@@ -8,16 +8,18 @@ type LayoutProps = {
 };
 const font = Roboto_Condensed({ subsets: ['latin'], weight: ['400'] });
 
-export async function generateMetadata({ params }: any) {
-  console.log('Params', params);
-  return {
-    title: '...',
-  }
-}
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <main className={`p-20 ${font.className}`}>{children}</main>
-  )
+    <>
+      <Head>
+        <title>World Times</title>
+        <meta name="description" content="All news about world " />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className={`p-20 ${font.className}`}>{children}</main>
+    </>
+  );
 };
 
 export default Layout;
