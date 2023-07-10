@@ -1,7 +1,9 @@
-import MovieCard from '@/components/Card/MovieCard';
 import SearchNotFound from '@/components/SearchNotFound';
+import dynamic from 'next/dynamic';
 import React from 'react';
 import { searchMovies } from '../api/movie';
+
+const MovieCard = dynamic(() => import('@/components/Card/MovieCard'))
 
 type MoviesSearchProps = {
   results: {

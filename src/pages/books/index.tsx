@@ -1,7 +1,9 @@
-import BookCard from '@/components/Card/BookCard';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { getBooks } from '../api/book';
+
+const BookCard = dynamic(() => import('@/components/Card/BookCard'))
 
 type BooksProps = {
   results: {
@@ -33,9 +35,10 @@ export default function Books({ results }: BooksProps) {
       router.push(`/books/${search}`);
     }
   };
+
   return (
     <div className="flex flex-col">
-      <form onSubmit={handleOnSubmit} className="max-w-xs">
+      <form onSubmit={handleOnSubmit} className="max-w-xs mb-4">
         <input
           onChange={handleOnChange}
           type="text"
@@ -45,7 +48,7 @@ export default function Books({ results }: BooksProps) {
           placeholder="Search"
         />
       </form>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap gap-5">
         {results.lists.map(({ display_name, books }, index: number) => (
           <div className="flex flex-wrap gap-5" key={index}>
             <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-2.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
@@ -82,10 +85,10 @@ export default function Books({ results }: BooksProps) {
       </div>
     </div>
   );
-}
+};
 
 export async function getStaticProps() {
   return {
     props: { results: await getBooks() },
   };
-}
+};
