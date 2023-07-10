@@ -1,7 +1,9 @@
-import BookCard from '@/components/Card/BookCard';
 import SearchNotFound from '@/components/SearchNotFound';
+import dynamic from 'next/dynamic';
 import React from 'react';
 import { searchBooks } from '../api/book';
+
+const BookCard = dynamic(() => import('@/components/Card/BookCard'))
 
 type BooksSearchProps = {
   results: {
@@ -9,8 +11,7 @@ type BooksSearchProps = {
     description: string;
     author: string;
   }[]
-}
-
+};
 
 export default function BooksSearch({ results }: BooksSearchProps) {
   return (
@@ -32,11 +33,11 @@ export default function BooksSearch({ results }: BooksSearchProps) {
       )}
     </div>
   );
-}
+};
 
 export async function getServerSideProps({ params }: any) {
   const { search } = params;
   return {
     props: { results: await searchBooks(search) },
   };
-}
+};

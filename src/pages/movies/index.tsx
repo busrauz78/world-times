@@ -1,7 +1,9 @@
-import MovieCard from '@/components/Card/MovieCard';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { getMovies } from '../api/movie';
+
+const MovieCard = dynamic(() => import('@/components/Card/MovieCard'));
 
 type MoviesProps = {
   results: {
@@ -45,7 +47,7 @@ export default function Movies({ results }: MoviesProps) {
           placeholder="Search"
         />
       </form>
-      <div className="flex flex-wrap ">
+      <div className="flex flex-wrap gap-5">
         {results.map(
           (
             {
@@ -73,10 +75,10 @@ export default function Movies({ results }: MoviesProps) {
       </div>
     </div>
   );
-}
+};
 
 export async function getStaticProps() {
   return {
     props: { results: await getMovies() },
   };
-}
+};
